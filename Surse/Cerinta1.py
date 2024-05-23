@@ -225,3 +225,28 @@ plt.bar_label(bars)
 
 plt.savefig("C6.png")
 plt.close()
+
+
+
+nr_copii = df[(df['Age'] < 18)].shape[0]
+nr_copii_suprav = df[(df['Age'] < 18) & (df['Survived'] == 1)].shape[0]
+print("copii = ",nr_copii)
+print("nr copii suprav = ", nr_copii_suprav)
+a = nr_copii_suprav / nr_copii * 100
+nr_adulti = df[(df['Age'] >= 18)].shape[0]
+nr_adulti_suprav = df[(df['Age'] >= 18) & (df['Survived'] == 1)].shape[0]
+print(nr_adulti, nr_adulti_suprav)
+b = nr_adulti_suprav / nr_adulti * 100
+
+x = ([a , b])
+mylabels = ["copii", "adulti"]
+bars = plt.bar(mylabels, x)
+plt.title("% of kids that surv from nr of kids vs of adults that surv from nr of adults")
+plt.ylabel('Percentages', fontsize = 12)
+plt.bar_label(bars)
+
+plt.savefig("C7.png")
+plt.close
+
+
+# nr adulti = num_rows - 
