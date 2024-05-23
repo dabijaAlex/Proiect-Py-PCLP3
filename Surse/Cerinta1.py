@@ -50,25 +50,40 @@ plt.close()
 ageDist = df['Age'].values.tolist()
 plt.hist(ageDist)
 plt.title("Age Distribution")
+plt.ylabel('number of people', fontsize = 12)
+plt.xlabel('Ages', fontsize = 12)
 
 plt.savefig("./../Histograms/ageDist.png")
 plt.close()
 
 ############
 
-SurvivedDist = df['Survived'].values.tolist()
-plt.hist(SurvivedDist, bins=[0, 0.5, 1], label = "hop")
+a = df[(df['Survived'] == 0)].shape[0]
+b = df[(df['Survived'] == 1)].shape[0]
+x = ([a, b])
+mylabels = ["Dead", "Survived"]
+bars = plt.bar(mylabels, x)
 plt.title("Survival Distribution")
-
+plt.ylabel('number of people', fontsize = 12)
+plt.bar_label(bars)
 
 plt.savefig("./../Histograms/SurvivalDist.png")
 plt.close()
 
 ###############
 
-PclassDist = df['Pclass'].values.tolist()
-plt.hist(PclassDist, bins=3)
+a = df[(df['Pclass'] == 1)].shape[0]
+b = df[(df['Pclass'] == 2)].shape[0]
+c = df[(df['Pclass'] == 3)].shape[0]
+x = ([a, b, c])
+mylabels = ["1", "2", "3"]
+bars = plt.bar(mylabels, x)
+plt.ylabel('number of people', fontsize = 12)
+plt.xlabel('Class', fontsize = 12)
 plt.title("Pclass Distribution")
+plt.bar_label(bars)
+
+
 
 plt.savefig("./../Histograms/Pclass.png")
 plt.close()
@@ -172,6 +187,41 @@ unknown = 100 - a - b - c - d
 x = np.array([a, b, c, d, unknown])
 mylabels = ["[0-20]", "[21-40]", "[41-60]", "61+", "Nan"]
 plt.pie(x, autopct='%1.1f%%', labels = mylabels)
+plt.title('Distribution between ages')
 
 plt.savefig("C5.png")
+plt.close()
+
+# df['Survived'].value_counts()[0]
+print('\n')
+
+total_barbati_suprav = (df.loc[(df['Sex'] == "male") & (df['Survived'] == 1)]).shape[0]
+male_0_20_alive = (df_0_20.loc[(df_0_20['Sex'] == "male") & (df_0_20['Survived'] == 1)]).shape[0]
+male_21_40_alive = (df_21_40.loc[(df_21_40['Sex'] == "male") & (df_21_40['Survived'] == 1)]).shape[0]
+male_41_60_alive = (df_41_60.loc[(df_41_60['Sex'] == "male") & (df_41_60['Survived'] == 1)]).shape[0]
+male_60_plus_alive = (df_61plus.loc[(df_61plus['Sex'] == "male") & (df_61plus['Survived'] == 1)]).shape[0]
+
+print("au supravietuit", total_barbati_suprav, "barbati")
+print("din categ 0 - 20 au supravietuit", male_0_20_alive, "barbati")
+print("din categ 21 - 40 au supravietuit", male_21_40_alive, "barbati")
+print("din categ 41 - 60 au supravietuit", male_41_60_alive, "barbati")
+print("din categ 61 + au supravietuit", male_60_plus_alive, "barbati")
+
+print('\n')
+
+
+a = (df_0_20.loc[(df_0_20['Sex'] == "male") & (df_0_20['Survived'] == 1)]).shape[0] / (df_0_20.loc[(df_0_20['Sex'] == "male")].shape[0]) * 100
+b = (df_21_40.loc[(df_21_40['Sex'] == "male") & (df_21_40['Survived'] == 1)]).shape[0] / (df_21_40.loc[(df_21_40['Sex'] == "male")].shape[0]) * 100
+c = (df_41_60.loc[(df_41_60['Sex'] == "male") & (df_41_60['Survived'] == 1)]).shape[0] / (df_41_60.loc[(df_41_60['Sex'] == "male")].shape[0]) * 100
+d = (df_61plus.loc[(df_61plus['Sex'] == "male") & (df_61plus['Survived'] == 1)]).shape[0] / (df_61plus.loc[(df_61plus['Sex'] == "male")].shape[0]) * 100
+
+x = [a, b, c, d]
+mylabels = ["[0-20]", "[21-40]", "[41-60]", "61+"]
+bars = plt.bar(mylabels, x)
+plt.title("Percentage of men that survived based on age group")
+plt.xlabel('Age Groups', fontsize=12)
+plt.ylabel('Percentages', fontsize=12)
+plt.bar_label(bars)
+
+plt.savefig("C6.png")
 plt.close()
