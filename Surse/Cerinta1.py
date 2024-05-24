@@ -58,24 +58,22 @@ plt.close()
 
 ############
 
-a = df[(df['Survived'] == 0)].shape[0]
-b = df[(df['Survived'] == 1)].shape[0]
-x = ([a, b])
+
+mylabels = df['Survived'].value_counts().index
+x = df['Survived'].value_counts()
 mylabels = ["Dead", "Survived"]
 bars = plt.bar(mylabels, x)
 plt.title("Survival Distribution")
 plt.ylabel('number of people', fontsize = 12)
 plt.bar_label(bars)
+# plt.xticks([])
 
 plt.savefig("./../Histograms/SurvivalDist.png")
 plt.close()
 
 ###############
 
-a = df[(df['Pclass'] == 1)].shape[0]
-b = df[(df['Pclass'] == 2)].shape[0]
-c = df[(df['Pclass'] == 3)].shape[0]
-x = ([a, b, c])
+x = df['Pclass'].value_counts()
 mylabels = ["1", "2", "3"]
 bars = plt.bar(mylabels, x)
 plt.ylabel('number of people', fontsize = 12)
@@ -90,26 +88,34 @@ plt.close()
 
 
 #############
-SibSpDist = df['SibSp'].values.tolist()
-plt.hist(SibSpDist, log = 1)
+x = df['SibSp'].value_counts()
+mylabels = df['SibSp'].value_counts().index
+bars = plt.bar(mylabels, x)
 plt.title("SibSp Distribution")
+plt.ylabel('number of people', fontsize = 12)
+plt.bar_label(bars)
 
 plt.savefig("./../Histograms/SibSp.png")
 plt.close()
 
 
 ##############
-ParchDist = df['Parch'].values.tolist()
-plt.hist(ParchDist, bins = 3)
+
+x = df['Parch'].value_counts()
+mylabels = df['Parch'].value_counts().index
+bars = plt.bar(mylabels, x)
 plt.title("Parch Distribution")
+plt.ylabel('number of people', fontsize = 12)
+plt.bar_label(bars)
+
 
 plt.savefig("./../Histograms/Parch.png")
 plt.close()
 
 ###########
 
-FareDist = df['Fare'].values.tolist()
-plt.hist(FareDist, log = 1)
+# FareDist = df['Fare'].values.tolist()
+bars = plt.hist(df['Fare'], [0, 30, 60, 100, 200, 300, 500, 1000])
 plt.title("Fare Distribution")
 
 plt.savefig("./../Histograms/Fare.png")
@@ -248,5 +254,32 @@ plt.bar_label(bars)
 plt.savefig("C7.png")
 plt.close
 
+df_to_complete = pd.read_csv('train.csv')
 
-# nr adulti = num_rows - 
+x = (df_to_complete[(df_to_complete['Survived'] == 1)])["Age"].mean()
+x = int(x)
+df_to_complete.loc[df_to_complete['Survived'] == 1, 'Age'] = x
+
+x = (df_to_complete[(df_to_complete['Survived'] == 0)])["Age"].mean()
+x = int(x)
+df_to_complete.loc[df_to_complete['Survived'] == 0, 'Age'] = x
+
+
+# most_frequent = df['Category'].mode()[0]
+# df['Category'].fillna(most_frequent, inplace=True)
+
+x = (df_to_complete[(df_to_complete['Survived'] == 1)])['Embarked'].mode()
+df_to_complete.loc[df_to_complete['Survived'] == 1, 'Embarked'] = x[0]
+
+x = (df_to_complete[(df_to_complete['Survived'] == 0)])['Embarked'].mode()
+df_to_complete.loc[df_to_complete['Survived'] == 0, 'Embarked'] = x[0]
+
+
+# x = df_to_complete["Fare"].mean()
+# df_to_complete["Fare"].fillna(x, inplace = True)
+
+print(df_to_complete.head(10))
+nan_count = df_to_complete.isna().sum()
+print(nan_count)
+df_to_complete.to_csv('new_df.csv', index = True)
+#intreaba daca trebuie sa cureti datele cu NA
