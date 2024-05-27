@@ -22,7 +22,7 @@ b = nr_adulti_suprav / nr_adulti * 100
 x = ([a , b])
 mylabels = ["copii", "adulti"]
 bars = plt.bar(mylabels, x)
-plt.title("% of kids that surv from nr of kids vs of adults that surv from nr of adults")
+plt.title("% of kids that surv vs % of adults that surv")
 plt.ylabel('Percentages', fontsize = 12)
 plt.bar_label(bars)
 

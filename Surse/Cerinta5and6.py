@@ -16,7 +16,7 @@ df_41_60 = df[df['Age'] <= 60]
 df_41_60 = df_41_60[df_41_60['Age'] >= 41]
 
 df_61plus = df[df['Age'] >= 61]
-
+print("\n------------------------\n")
 print(len(df_0_20), "persoane in categoria 0 - 20")
 print(len(df_21_40), "persoane in categoria 21 - 40")
 print(len(df_41_60), "persoane in categoria 41 - 60")
@@ -24,6 +24,8 @@ print(len(df_61plus), "persoane in categoria 61 +")
 
 nan_count = df.isna().sum()
 print(nan_count['Age'], "persoane nu le stim varsta")
+print("\n------------------------\n")
+
 
 
 df.insert(1, "AgeGroup", "")

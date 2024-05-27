@@ -19,11 +19,12 @@ plt.close()
 
 mylabels = df['Survived'].value_counts().index
 x = df['Survived'].value_counts()
-mylabels = ["Dead", "Survived"]
+# mylabels = ["Dead", "Survived"]
 bars = plt.bar(mylabels, x)
 plt.title("Survival Distribution")
 plt.ylabel('number of people', fontsize = 12)
 plt.bar_label(bars)
+plt.xticks([0, 1])
 # plt.xticks([])
 
 plt.savefig("./../Histograms/SurvivalDist.png")
@@ -32,12 +33,13 @@ plt.close()
 ###############
 
 x = df['Pclass'].value_counts()
-mylabels = ["1", "2", "3"]
+mylabels = (df['Pclass'].value_counts().index)
 bars = plt.bar(mylabels, x)
 plt.ylabel('number of people', fontsize = 12)
 plt.xlabel('Class', fontsize = 12)
 plt.title("Pclass Distribution")
 plt.bar_label(bars)
+plt.xticks([1, 2, 3])
 
 
 
@@ -52,6 +54,7 @@ bars = plt.bar(mylabels, x)
 plt.title("SibSp Distribution")
 plt.ylabel('number of people', fontsize = 12)
 plt.bar_label(bars)
+plt.xticks([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
 plt.savefig("./../Histograms/SibSp.png")
 plt.close()
@@ -72,7 +75,6 @@ plt.close()
 
 ###########
 
-# FareDist = df['Fare'].values.tolist()
 bars = plt.hist(df['Fare'], [0, 30, 60, 100, 200, 300, 500, 1000])
 plt.title("Fare Distribution")
 

@@ -7,20 +7,21 @@ import seaborn as sns
 
 
 df = pd.read_csv('train.csv')
-print(df.head())
+
 num_cols = len(df.columns)
 print("nr coloane = ", num_cols)
+print("---------------------")
+print("TYPE PT FIECARE COLOANA:\n")
 print(df.dtypes)
 
-print("\n")
-
+print("---------------------")
 nan_count = df.isna().sum()
+print("NR DATE LIPSA PT FIECARE COLOANA:\n")
 print(nan_count)
-print("\n")
-
+print("---------------------")
 num_rows = len(df)
 print("nr linii = ", num_rows)
-print("\n")
+print("---------------------")
 
 if (df.duplicated().sum()):
     print("there are some duplicates\n")
