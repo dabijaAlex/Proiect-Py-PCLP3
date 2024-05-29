@@ -9,9 +9,9 @@ num_rows = len(df)
 
 df['Alone'] = (df['SibSp'] + df['Parch'] == 0)
 
-alone_survived = df.groupby(['Alone', 'Survived']).size().unstack().fillna(0)
+surv_alone = df.groupby(['Alone', 'Survived']).size().unstack().fillna(0)
 
-alone_survived.plot(kind='bar', stacked=True, ax=plt.gca(), rot = True)
+surv_alone.plot(kind='bar', stacked=True, ax=plt.gca(), rot = True)
 plt.ylabel('Număr de persoane')
 plt.title('Influența stării de a fi singur pe Titanic asupra șanselor de supraviețuire')
 plt.xticks([0, 1], ['Impreuna', 'Singur'])
