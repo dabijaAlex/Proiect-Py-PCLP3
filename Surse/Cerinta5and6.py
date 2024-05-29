@@ -41,7 +41,7 @@ for i in range(0,num_rows):
 
     if df['Age'][i] >= 61:
         df.loc[i, "AgeGroup"] = 4
-
+df.to_csv('Age_group.csv', index = True)
 # print(df.head(100))
 
 a = df['AgeGroup'].value_counts()[1] / (num_rows - nan_count["Age"]) * 100

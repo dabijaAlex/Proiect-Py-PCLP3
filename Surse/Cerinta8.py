@@ -24,4 +24,4 @@ df_to_complete.loc[df_to_complete['Survived'] == 0, 'Embarked'] = x[0]
 print(df_to_complete.head(10))
 nan_count = df_to_complete.isna().sum()
 print(nan_count)
-df_to_complete.to_csv('new_df.csv', index = True)
+df_to_complete.to_csv('new_df_C8.csv', index = True)

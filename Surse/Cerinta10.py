@@ -7,9 +7,9 @@ df = pd.read_csv('train.csv')
 num_rows = len(df)
 
 
-df['alone'] = (df['SibSp'] + df['Parch'] == 0)
+df['Alone'] = (df['SibSp'] + df['Parch'] == 0)
 
-alone_survived = df.groupby(['alone', 'Survived']).size().unstack().fillna(0)
+alone_survived = df.groupby(['Alone', 'Survived']).size().unstack().fillna(0)
 
 alone_survived.plot(kind='bar', stacked=True, ax=plt.gca(), rot = True)
 plt.ylabel('Număr de persoane')
@@ -27,3 +27,5 @@ plt.ylabel('Tarif')
 
 plt.savefig("../Images/C10_part2.png")
 plt.close()
+
+df.to_csv('new_df_C10.csv', index = True)

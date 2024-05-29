@@ -72,3 +72,5 @@ plt.title('Numărul de persoane pentru fiecare titlu')
 plt.bar_label(bars)
 plt.savefig("../Images/C9.png")
 plt.close()
+
+df.to_csv('new_df_C9.csv', index = True)
